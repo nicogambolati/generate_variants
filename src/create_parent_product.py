@@ -7,7 +7,7 @@ def main():
     input_file = "../data/products.json"
 
     if not os.path.exists(input_file):
-        print(f"Error: No se encontró el archivo {input_file}.")
+        print(f"*** Error: File not found {input_file}. ***")
         return
 
     with open(input_file, "r", encoding="utf-8") as file:
@@ -56,7 +56,7 @@ def main():
             row = [product.get(field, "") for field in fields]
             writer.writerow(row)
 
-    print("Los productos ha sido creados con éxito.")
+    print("*** The products have been successfully created. ***")
 
 
 if __name__ == "__main__":

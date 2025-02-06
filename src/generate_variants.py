@@ -50,49 +50,6 @@ def generate_variants(product, base_name, base_price):
     return variants
 
 
-input_file = "../data/products.json"
-output_file = "../data/variants_products.csv"
-
-if not os.path.exists(input_file):
-    print(f"Error: No se encontró el archivo {input_file}.")
-    exit()
-
-with open(input_file, "r", encoding="utf-8") as file:
-    products_data = json.load(file)
-
-fields = [
-    "Identificador de URL",
-    "Nombre",
-    "Categorías",
-    "Nombre de propiedad 1",
-    "Valor de propiedad 1",
-    "Nombre de propiedad 2",
-    "Valor de propiedad 2",
-    "Nombre de propiedad 3",
-    "Valor de propiedad 3",
-    "Precio",
-    "Precio promocional",
-    "Peso (kg)",
-    "Alto (cm)",
-    "Ancho (cm)",
-    "Profundidad (cm)",
-    "Stock",
-    "SKU",
-    "Código de barras",
-    "Mostrar en tienda",
-    "Envío sin cargo",
-    "Descripción",
-    "Tags",
-    "Título para SEO",
-    "Descripción para SEO",
-    "Marca",
-    "Producto Físico",
-    "MPN (Número de pieza del fabricante)",
-    "Sexo",
-    "Rango de edad",
-    "Costo",
-]
-
 remera_variants = {
     "color": ["Negro", "Blanco"],
     "estilo": [
@@ -115,15 +72,62 @@ buzo_variants = {
     "talle": ["S", "M", "L", "XL", "XXL"],
 }
 
-with open(output_file, mode="w", newline="", encoding="utf-8") as file:
-    writer = csv.writer(file, delimiter=";")
-    writer.writerow(fields)
+def main():
+    input_file = "../data/products.json"
+    output_file = "../data/variants_products.csv"
 
-    for product_data in products_data:
-        product_id = product_data["Identificador de URL"]
-        base_price = product_data["Precio"]
-        variants = generate_variants(product_data, product_id, base_price)
-        for variant in variants:
-            writer.writerow(variant)
+    if not os.path.exists(input_file):
+        print(f"*** Error: File not found {input_file}. ***")
+        exit()
 
-print("Archivo de variantes creado con éxito.")
+    with open(input_file, "r", encoding="utf-8") as file:
+        products_data = json.load(file)
+
+    fields = [
+        "Identificador de URL",
+        "Nombre",
+        "Categorías",
+        "Nombre de propiedad 1",
+        "Valor de propiedad 1",
+        "Nombre de propiedad 2",
+        "Valor de propiedad 2",
+        "Nombre de propiedad 3",
+        "Valor de propiedad 3",
+        "Precio",
+        "Precio promocional",
+        "Peso (kg)",
+        "Alto (cm)",
+        "Ancho (cm)",
+        "Profundidad (cm)",
+        "Stock",
+        "SKU",
+        "Código de barras",
+        "Mostrar en tienda",
+        "Envío sin cargo",
+        "Descripción",
+        "Tags",
+        "Título para SEO",
+        "Descripción para SEO",
+        "Marca",
+        "Producto Físico",
+        "MPN (Número de pieza del fabricante)",
+        "Sexo",
+        "Rango de edad",
+        "Costo",
+    ]
+
+    with open(output_file, mode="w", newline="", encoding="utf-8") as file:
+        writer = csv.writer(file, delimiter=";")
+        writer.writerow(fields)
+
+        for product_data in products_data:
+            product_id = product_data["Identificador de URL"]
+            base_price = product_data["Precio"]
+            variants = generate_variants(product_data, product_id, base_price)
+            for variant in variants:
+                writer.writerow(variant)
+
+    print("*** Product variants have been successfully created. ***")
+
+if __name__ == "__main__":
+    main()
