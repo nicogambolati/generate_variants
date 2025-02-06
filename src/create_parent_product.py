@@ -46,16 +46,17 @@ def main():
         "Costo",
     ]
 
-    product = [product_data.get(field, "") for field in fields]
-
     with open(
         "../data/parent_products.csv", mode="w", newline="", encoding="utf-8"
     ) as file:
         writer = csv.writer(file, delimiter=";")
         writer.writerow(fields)
-        writer.writerow(product)
 
-    print("El producto ha sido creado con éxito.")
+        for product in product_data:
+            row = [product.get(field, "") for field in fields]
+            writer.writerow(row)
+
+    print("Los productos ha sido creados con éxito.")
 
 
 if __name__ == "__main__":
