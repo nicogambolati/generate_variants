@@ -123,6 +123,8 @@ def main():
         for product_data in products_data:
             product_id = product_data["Identificador de URL"]
             base_price = product_data["Precio"]
+            parent_row = [product_data.get(field, "") for field in fields]
+            writer.writerow(parent_row)
             variants = generate_variants(product_data, product_id, base_price)
             for variant in variants:
                 writer.writerow(variant)
