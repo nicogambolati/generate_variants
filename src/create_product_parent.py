@@ -47,7 +47,7 @@ def main():
     ]
 
     with open(
-        "../data/parent_products.csv", mode="w", newline="", encoding="utf-8"
+        "../data/products_parent.csv", mode="w", newline="", encoding="utf-8"
     ) as file:
         writer = csv.writer(file, delimiter=";")
         writer.writerow(fields)

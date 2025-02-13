@@ -74,7 +74,7 @@ buzo_variants = {
 
 def main():
     input_file = "../data/products.json"
-    output_file = "../data/variants_products.csv"
+    output_file = "../data/products_variants.csv"
 
     if not os.path.exists(input_file):
         print(f"*** Error: File not found {input_file}. ***")

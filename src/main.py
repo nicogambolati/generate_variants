@@ -1,11 +1,11 @@
-import create_parent_product
+import create_product_parent
 import generate_variants
 
 
 def main():
     print()
-    print("Creating parent products...")
-    create_parent_product.main()
+    print("Creating products parents...")
+    create_product_parent.main()
 
     print()
 
